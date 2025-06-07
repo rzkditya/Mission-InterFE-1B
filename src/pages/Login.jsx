@@ -4,13 +4,9 @@ import Layout from '../layouts/FormLayout'
 
 export const Login = () => {
   return (
-    <>
-      <div>
-        <Layout>
-            <Form template='login'/>
-        </Layout>
-      </div>
-    </>
+    <Layout>
+        <Form template='login'/>
+    </Layout>
   )
 }
 

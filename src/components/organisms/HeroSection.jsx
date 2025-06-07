@@ -5,7 +5,7 @@ import Button from '../atoms/Button'
 
 const HeroSection = () => {
   return (
-    <section className='relative w-full h-[75vh] flex items-end justify-start'>
+    <section className='relative w-full h-[30vh] md:h-[75vh] flex items-end justify-start'>
         {/* Background Image */}
         <div className='absolute inset-0 bg-cover bg-center z-0' style={{ backgroundImage: `url(${HeroBg})` }}/>
 

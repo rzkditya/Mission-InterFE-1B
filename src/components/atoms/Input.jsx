@@ -17,7 +17,7 @@ const Input = ({
     id = 'username', 
     name = 'username',
 }) => {
-    const baseStyle = 'w-full h-7 px-5 border border-white/40 rounded-full text-xs text-light-primary';
+    const baseStyle = 'w-full h-7 md:h-9 px-5 border border-white/40 rounded-full text-xs md:text-lg text-light-primary';
 
     const { type, placeholder } = inputVariants[variant] || inputVariants['username'];
 

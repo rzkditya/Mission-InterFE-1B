@@ -4,11 +4,9 @@ import Form from '../components/organisms/Form'
 
 const Register = () => {
   return (
-    <>
-        <Layout>
-            <Form template='register'/>
-        </Layout>
-    </>
+    <Layout>
+      <Form template='register'/>
+    </Layout>
   )
 }
 
