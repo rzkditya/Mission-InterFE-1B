@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=DynaPuff:wdth,wght@75..100,400..700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Oi&display=swap');
+@import 'tailwindcss';
+
+@theme {
+    --color-primary-default: #3254FF;
+    --color-primary-100: #243FDB;
+    --color-primary-200: #192DB7;
+    --color-primary-300: #0F1E93;
+    --color-primary-400: #09147A;
+
+    --color-gray-50: #FAFAFA;
+    --color-gray-100: #F5F5F5;
+    --color-gray-200: #EEEEEE;
+    --color-gray-300: #E0E0E0;
+    --color-gray-400: #BDBDBD;
+    --color-gray-500: #9E9E9E;
+    --color-gray-600: #757575;
+    --color-gray-700: #616161;
+    --color-gray-800: #424242;
+    --color-gray-900: #212121;
+
+    --color-page-header: #181A1C;
+    --color-body: #2F3334;
+    --color-background: #CDF1FF;
+
+    --color-dark: #3A3541;
+
+    --color-light: #E7E3FC;
+    --color-light-primary: #FFFFFF;
+    --color-light-secondary: #C1C2C4;
+    --color-light-disabled: #9D9EA1;
+
+    --color-error-pressed: #B71F1D;
+
+    --color-warning-pressed: #B7A207;
+
+    --color-other-extra: #3D4142;
+    --color-outline: #E7E3FC;
+
+
+    --font-lato: 'Lato', sans-serif;
+}
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  font-family: 'Lato', sans-serif;
+  
+}
