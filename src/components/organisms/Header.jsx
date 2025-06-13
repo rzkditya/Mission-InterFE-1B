@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { useLocation } from 'react-router-dom'
 
 
 import webLogo from '@/assets/images/Logo.svg'
@@ -11,14 +12,14 @@ const Navbar = () => {
   return (
     <header className='flex justify-between items-center md:py-4 md:px-10 p-4 bg-page-header text-light-primary'>
         <div name="header-container" className='flex items-center'>
-            <div class="header-nav" className='flex items-center gap-4 md:gap-14 lg:gap-18'>
-                <Link href="/Home" class="logo" className='hidden md:flex'><img className='h-8 lg:h-12' src={webLogo} alt="Logo Chill"/></Link>
-                <Link href="/Home" class="logo-mobile" className='flex md:hidden'><img className='h-4' src={mobLogo} alt="Logo Chill Mobile"/></Link>
+            <div name="header-nav" className='flex items-center gap-4 md:gap-14 lg:gap-18'>
+                <Link to="/Home" className='hidden md:flex'><img className='h-8 lg:h-12' src={webLogo} alt="Logo Chill"/></Link>
+                <Link to="/Home" className='flex md:hidden'><img className='h-4' src={mobLogo} alt="Logo Chill Mobile"/></Link>
                 <nav>
                     <ul name='Nav Links' className='flex text-xs md:text-lg lg:text-2xl gap-4 md:gap-14 lg:gap-18'>
                         <li className='hover:text-primary-default'><a href="#series">Series</a></li>
                         <li className='hover:text-primary-default'><a href="#film">Film</a></li>
-                        <li className='hover:text-primary-default'><a href="#daftar-saya">Daftar Saya</a></li>
+                        <li className='hover:text-primary-default'><Link to="/daftar-saya">Daftar Saya</Link></li>
                     </ul>
                 </nav>
             </div>
