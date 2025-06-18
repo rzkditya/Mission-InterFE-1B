@@ -11,9 +11,9 @@ const Home = () => {
       <Header/>
       <Main>
         <LandscapeGrid/>
-        <PortraitGrid type='Top 10'/>
-        <PortraitGrid type='Trending'/>
-        <PortraitGrid type='New Release'/>
+        <PortraitGrid type='Top 10' filterKey='isTopRated'/>
+        <PortraitGrid type='Trending' filterKey='isTrending'/>
+        <PortraitGrid type='New Release' filterKey='isNewRelease'/>
       </Main>
       <Footer/>
     </>

@@ -2,14 +2,31 @@ import React from 'react'
 import Main from '../layouts/MenuLayout'
 import Header from '../components/organisms/Header'
 import Footer from '../components/organisms/Footer'
-import PortraitGrid from '../components/organisms/CardGrid'
+import PortraitCard from '../components/molecules/PortraitCard'
+import HoverCard from '../components/organisms/HoverCard'
+import allFilms from '../allFilms.json'
 
 const DaftarSaya = () => {
   return (
     <>
       <Header/>
       <Main>
-        <PortraitGrid type='Top 10'/>
+        <section className='flex flex-col gap-5 mb-5'>
+          <h2 className='text-light-primary text-xl font-medium'>
+            Daftar Saya
+          </h2>
+          <div className='relative grid grid-cols-5 gap-6 text-light-primary'>
+            {allFilms.map((movie) => 
+              <div key={allFilms.id} className="relative group w-full">
+                <PortraitCard movie={movie} />
+
+                <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 group-hover:scale-120 transition-opacity duration-300 z-20'>
+                  <HoverCard movie={movie} />
+                </div>
+              </div>
+            )}
+          </div>
+        </section>
       </Main>
       <Footer/>
     </>

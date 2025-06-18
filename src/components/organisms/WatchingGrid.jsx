@@ -2,7 +2,7 @@ import React from 'react'
 import Continue_Watching from '../datas/Continue Watching'
 import Arrow from '../atoms/Arrow'
 import LandscapeCard from '../molecules/LandscapeCard'
-import HoverCard from '../molecules/HoverCard'
+import HoverCard from '../organisms/HoverCard'
 
 const dataSources = {
   'Continue Watching': Continue_Watching,

@@ -70,6 +70,67 @@ const Top_Rating = [
     poster_path: imageMap['The Tomorrow War.svg'],
     badge: '',
   },
+  {
+   id: 6,
+    title: 'Avatar TWOW',
+    category: 'Films',
+    genres: [
+      'Adventure',
+      'Fantasy',
+      'Romance',
+    ],
+    age_rating: 'PG',
+    poster_path: imageMap['Avatar TWOW.svg'],
+    badge: '',
+  },
+  {
+    id: 7,
+    title: 'Big Hero 6',
+    genres: [
+      'Adventure',
+      'Fantasy',
+      'Romance',
+    ],
+    age_rating: 'PG',
+    poster_path: imageMap['Big Hero 6.svg'],
+    badge: '',
+  },
+  {
+    id: 8,
+    title: 'Megan',
+    genres: [
+      'Adventure',
+      'Fantasy',
+      'Romance',
+    ],
+    age_rating: 'PG',
+    poster_path: imageMap['Megan.svg'],
+    badge: '',
+  },
+  {
+    id: 9,
+    title: 'Rio',
+    genres: [
+      'Adventure',
+      'Fantasy',
+      'Romance',
+    ],
+    age_rating: 'PG',
+    poster_path: imageMap['Rio.svg'],
+    badge: '',
+  },
+  {
+    id: 10,
+    title: 'The Tomorrow War',
+    genres: [
+      'Adventure',
+      'Fantasy',
+      'Romance',
+    ],
+    age_rating: 'PG',
+    poster_path: imageMap['The Tomorrow War.svg'],
+    badge: '',
+  },
   // ...more movies
 ];
 

@@ -16,7 +16,7 @@ const LandscapeCard = ({movie: {title, poster_path, rating, badge}}) => {
         <section className='absolute bottom-0 w-full p-3 z-3 flex justify-between items-center text-sm md:text-lg'>
           <div className='text-left w-4/5 truncate'>{title}</div>
           <div className='text-right w-2/5'>
-            <FontAwesomeIcon icon="fa-solid fa-star"/> {rating}
+            <FontAwesomeIcon icon="fa-solid fa-star"/> {rating}/5
           </div>
         </section>
 

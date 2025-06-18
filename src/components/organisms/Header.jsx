@@ -34,7 +34,7 @@ const Navbar = () => {
                         <ul className='flex flex-col gap-4 md:gap-8 text-left'>
                             <li className='hover:text-primary-default'><a href="#Profil"><FontAwesomeIcon icon="fa-solid fa-user" className='mr-2'/>Profil Saya</a></li>
                             <li className='hover:text-primary-default'><a href="#Premium"><FontAwesomeIcon icon="fa-solid fa-star" className='mr-2'/>Ubah Premium</a></li>
-                            <li className='hover:text-primary-default'><a href="#Keluar"><FontAwesomeIcon icon="fa-solid fa-right-from-bracket" className='mr-2'/>Keluar</a></li>
+                            <li className='hover:text-primary-default'><Link to="/login"><FontAwesomeIcon icon="fa-solid fa-right-from-bracket" className='mr-2'/>Keluar</Link></li>
                         </ul>
                     </section>
                 </div>

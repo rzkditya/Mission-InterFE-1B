@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Logo from '../atoms/Logo'
 import InputBox from '../molecules/InputField'
 import Button from '../atoms/Button'
@@ -7,7 +7,8 @@ import Google from '../../assets/images/Google.svg'
 
 const Form = ({template = 'login'}) => {
     const baseStyle = 'flex flex-col justify-center w-xs md:w-md h-fit p-[20px] gap-6 bg-page-header/65 outline outline-black/5 rounded-xl text-sm md:text-lg text-light-primary'
-    
+    const navigate = useNavigate()
+
     const templateLogin = () => (
         <div className={baseStyle}>
             <Logo/>
@@ -26,9 +27,9 @@ const Form = ({template = 'login'}) => {
                 </div>
             </div>
             <div className='flex flex-col justify-between items-center text-xs md:text-lg'>
-                <Button variant='extra' className='w-full py-1'>Masuk</Button>
+                <Button onClick={() => {navigate('/home')}} variant='extra' className='w-full py-1'>Masuk</Button>
                 <span className=' my-1 text-light-disabled'>Atau</span>
-                <Button variant='clean-white' className='w-full py-1'><img src={Google} alt="Google Icon" />Masuk dengan Google</Button>
+                <Button onClick={() => {navigate('/home')}} variant='clean-white' className='w-full py-1'><img src={Google} alt="Google Icon" />Masuk dengan Google</Button>
             </div>
         </div>
     )
@@ -51,9 +52,9 @@ const Form = ({template = 'login'}) => {
                 </div>
             </div>
             <div className='flex flex-col justify-between items-center text-xs md:text-lg'>
-                <Button variant='extra' className='w-full py-1'>Daftar</Button>
+                <Button onClick={() => {navigate('/home')}} variant='extra' className='w-full py-1'>Daftar</Button>
                 <span className=' my-1 text-light-disabled'>Atau</span>
-                <Button variant='clean-white' className='w-full py-1'><img src={Google} alt="Google Icon" />Daftar dengan Google</Button>
+                <Button onClick={() => {navigate('/home')}} variant='clean-white' className='w-full py-1'><img src={Google} alt="Google Icon" />Daftar dengan Google</Button>
             </div>
         </div>
     )

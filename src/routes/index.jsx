@@ -3,6 +3,7 @@ import Login from '../pages/Login'
 import Register from '../pages/Register'
 import Home from '../pages/Home'
 import DaftarSaya from '../pages/DaftarSaya'
+import Test from '../pages/test'
 
 export const router = createBrowserRouter([
     {
@@ -20,5 +21,9 @@ export const router = createBrowserRouter([
     {
         path: "/daftar-saya",
         element: <DaftarSaya/>,
-    }
+    },
+    {
+        path: "/test",
+        element: <Test/>,
+    },
 ])
