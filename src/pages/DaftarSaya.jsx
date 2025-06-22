@@ -7,6 +7,8 @@ import HoverCard from '../components/organisms/HoverCard'
 import allFilms from '../allFilms.json'
 
 const DaftarSaya = () => {
+  const movies = allFilms.filter(movie => movie['myList'])
+
   return (
     <>
       <Header/>
@@ -16,8 +18,8 @@ const DaftarSaya = () => {
             Daftar Saya
           </h2>
           <div className='relative grid grid-cols-5 gap-6 text-light-primary'>
-            {allFilms.map((movie) => 
-              <div key={allFilms.id} className="relative group w-full">
+            {movies.map((movie) => 
+              <div key={movies.id} className="relative group w-full">
                 <PortraitCard movie={movie} />
 
                 <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 group-hover:scale-120 transition-opacity duration-300 z-20'>

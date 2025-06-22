@@ -8,8 +8,9 @@ import Button from '../atoms/Button'
 const PopUpDetail = ({movie, onClose}) => {
     const [daftarSaya, setDaftarSaya] = useState(false)
     const myList = 
-        daftarSaya ? <FontAwesomeIcon icon="fa-solid fa-heart" style={{color: "#cc3333",}} className='w-4 p-2 rounded-full outline-1 outline-light-disabled'/> : <FontAwesomeIcon icon="fa-solid fa-plus" className='w-4 p-2 rounded-full outline-1 outline-light-disabled'/>
+        daftarSaya ? <FontAwesomeIcon icon="fa-solid fa-heart" style={{color: "#cc3333",}} className='w-4 p-2 rounded-full bg-light-primary'/> : <FontAwesomeIcon icon="fa-solid fa-plus" className='w-4 p-2 rounded-full outline-1 outline-light-disabled'/>
 
+        
     function handleClick() {
         setDaftarSaya(prev => !prev)
     }
@@ -21,7 +22,7 @@ const PopUpDetail = ({movie, onClose}) => {
                 <section className='relative w-full'>
                     {/* Hero Image */}
                     <figure className="relative max-h-[300px] overflow-hidden">
-                        <img className="w-full object-cover rounded-t-lg" src={movie.poster_path} alt="Test Image" />
+                        <img className="w-full object-cover rounded-t-lg" src={movie.poster_path} alt="Hero Image" />
                         <div className="absolute bottom-0 left-0 w-full h-[80%] bg-gradient-to-t from-page-header/100 from-5% via-page-header/80 via-50% to-transparent z-2"/>
                     </figure>
 

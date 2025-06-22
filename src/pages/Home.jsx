@@ -2,8 +2,8 @@ import React from 'react'
 import Main from '../layouts/MenuLayout'
 import Header from '../components/organisms/Header'
 import Footer from '../components/organisms/Footer'
-import PortraitGrid from '../components/organisms/CardGrid'
-import LandscapeGrid from '../components/organisms/WatchingGrid'
+import PortraitGrid from '../components/organisms/PortraitGrid'
+import LandscapeGrid from '../components/organisms/LandscapeGrid'
 
 const Home = () => {
   return (
