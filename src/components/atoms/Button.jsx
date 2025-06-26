@@ -6,7 +6,7 @@ const variantStyles = {
   'primary-default': 'bg-transparent text-primary-default border border-blue-default',
   'body': 'bg-body text-white',
   'extra': 'bg-other-extra text-white border border-outline/40',
-  'clean-white': 'bg-transparent text-white border border-outline/40',
+  'clean-white': 'bg-transparent text-white border border-outline/40 hover:bg-light-disabled/50',
   'clear': 'bg-transparent text-inherit',
 };
 

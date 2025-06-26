@@ -17,8 +17,8 @@ const Navbar = () => {
                 <Link to="/Home" className='flex md:hidden'><img className='h-4' src={mobLogo} alt="Logo Chill Mobile"/></Link>
                 <nav>
                     <ul name='Nav Links' className='flex text-xs md:text-lg lg:text-2xl gap-4 md:gap-14 lg:gap-18'>
-                        <li className='hover:text-primary-default'><a href="#series">Series</a></li>
-                        <li className='hover:text-primary-default'><a href="#film">Film</a></li>
+                        <li className='hover:text-primary-default'><Link to="/series">Series</Link></li>
+                        <li className='hover:text-primary-default'><Link to="/films">Film</Link></li>
                         <li className='hover:text-primary-default'><Link to="/daftar-saya">Daftar Saya</Link></li>
                     </ul>
                 </nav>
