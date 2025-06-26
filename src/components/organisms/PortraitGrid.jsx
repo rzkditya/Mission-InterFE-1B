@@ -22,9 +22,9 @@ const PortraitGrid = ({type = 'Top 10', filterKey = 'isTopRated', onShowDetail})
 
       <div className='relative'>
         <Arrow template='left'></Arrow>
-        <div className='relative flex flex-nowrap scrollbar-hide gap-4 text-light-primary'>
-          {movies.slice(0,5).map((movie) => 
-            <div key={movie.id} className="relative group w-1/4 md:grow md:w-fit">
+        <div className='relative flex flex-nowrap overflow-x-auto overflow-y-clip scrollbar-hide gap-4 text-light-primary'>
+          {movies.slice(0,6).map((movie) => 
+            <div key={movie.id} className="relative group w-1/4 shrink-0 md:grow md:w-fit">
               <div className='block md:pointer-events-none' onClick={() => {
                 if(window.innerWidth < 768) {
                   onShowDetail(movie)

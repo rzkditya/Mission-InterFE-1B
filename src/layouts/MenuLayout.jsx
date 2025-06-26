@@ -5,7 +5,7 @@ const Layout = ({ children }) => {
   return (
     <main className='flex flex-col overflow-x-clip'>
       <HeroSection/>
-      <section className='flex flex-col justify-between md:py-4 md:px-10 py-2 pl-4 gap-3 bg-page-header'>
+      <section className='flex flex-col h-screen sm:h-full justify-between md:py-4 md:px-10 py-2 px-4 gap-3 bg-page-header'>
         {children}
       </section>
     </main>

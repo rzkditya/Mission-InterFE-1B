@@ -16,7 +16,7 @@ const DaftarSaya = () => {
   }, [])
 
   const loadMyList = () => {
-    const savedList = JSON.parse(localStorage.getItem('myList'))
+    const savedList = JSON.parse(localStorage.getItem('myList')) || []
     const filteredMovies = allFilms
       .map(movie => ({
         ...movie,
@@ -63,12 +63,17 @@ const DaftarSaya = () => {
           {myListMovies.length === 0 ? (
             <p className='text-light-secondary'>Belum ada film di daftar Anda.</p>
           ) : (
-            <div className='relative grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 text-light-primary'>
+            <div className='relative grid grid-cols-3  md:grid-cols-4 lg:grid-cols-6 gap-6 text-light-primary'>
               {myListMovies.map(movie => (
                 <div key={movie.id} className="relative group w-full">
+                  <div className='block md:pointer-events-none' onClick={() => { if(window.innerWidth < 768) {
+                    handleShowDetail(movie)
+                    }
+                  }}>
                   <PortraitCard movie={movie} />
+                  </div>
 
-                  <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 group-hover:scale-120 transition-opacity duration-300 hover:z-20'>
+                  <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 group-hover:scale-120 transition-opacity duration-300 hover:z-20 hidden md:block'>
                     <HoverCard
                       movie={movie}
                       onShowDetail={() => handleShowDetail(movie)}
