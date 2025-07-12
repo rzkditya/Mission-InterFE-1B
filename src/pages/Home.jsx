@@ -1,35 +1,47 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Main from '../layouts/MenuLayout'
 import Header from '../components/organisms/Header'
 import Footer from '../components/organisms/Footer'
 import PortraitGrid from '../components/organisms/PortraitGrid'
 import LandscapeGrid from '../components/organisms/LandscapeGrid'
 import PopUp from '../components/organisms/PopUpDetail'
-import allFilms from '../allFilms.json'
+import axios from 'axios'
 
 const Home = () => {
+  const api_url = import.meta.env.VITE_API_URL
   const [selectedMovie, setSelectedMovie] = useState(null)
-  const [movieList, setMovieList] = useState(() => {
-  const saved = JSON.parse(localStorage.getItem('myList')) || []
-  return allFilms.map(movie => ({
-      ...movie,
-      myList: saved.includes(movie.id),
-    }))
-  })
+  const [mov, setMov] = useState(null)
+  const [movieList, setMovieList] = useState([])
+
+  useEffect(() => {
+    axios.get(api_url)
+    .then((response) => {
+      console.log('✅ API response:', response.data)
+      setMov(response.data)
+
+      const saved = JSON.parse(localStorage.getItem('myList')) || []
+      const myMovList =  response.data.map(movie => ({
+          ...movie,
+          myList: saved.includes(movie.id),
+        }))
+        setMovieList(myMovList)
+    })
+    .catch((err) => {
+      console.error('Failed to fetch movies:', err)
+    })
+  }, [])
+
+  if (!mov) return null
 
   function toggleMyList(movieId) {
-  setMovieList(prev =>
-    prev.map(movie =>
+    setMovieList(prevList => {
+    const updated = prevList.map(movie =>
       movie.id === movieId ? { ...movie, myList: !movie.myList } : movie
     )
-  )
-
-  const updated = movieList.map(m =>
-    m.id === movieId ? { ...m, myList: !m.myList } : m
-  )
-
-  const savedIds = updated.filter(m => m.myList).map(m => m.id)
+    const savedIds = updated.filter(m => m.myList).map(m => m.id)
     localStorage.setItem('myList', JSON.stringify(savedIds))
+    return updated
+  })
   }
   
   function handleShowDetail(movie) {
@@ -42,6 +54,8 @@ const Home = () => {
   function handleCloseDetail() {
     setSelectedMovie(null)
   }
+
+  if (!movieList.length) return <div>Loading...</div>
 
   return (
     <>

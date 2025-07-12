@@ -1,8 +1,9 @@
-import React from 'react'
+import {useState, useEffect} from 'react'
 import PortraitCard from '../molecules/PortraitCard'
 import Arrow from '../atoms/Arrow'
 import HoverCard from './HoverCard'
 import allMovies from '../../allFilms.json'
+import axios from 'axios'
 
 const titles = {
   'Top 10': 'Top Rating Film dan Series Hari Ini',
@@ -11,8 +12,21 @@ const titles = {
 }
 
 const PortraitGrid = ({type = 'Top 10', filterKey = 'isTopRated', onShowDetail}) => {
-  const movies = allMovies.filter(movie => movie[filterKey])
+  const [mov, setMov] = useState(null)
+  const api_url = import.meta.env.VITE_API_URL
+  const movies = mov?.filter(movie => movie[filterKey]) || []
   const title = titles[type] || '---'
+
+  useEffect(() => {
+    axios.get(api_url).then((response) => {
+      console.log('✅ API response:', response.data)
+      setMov(response.data)
+    }).catch((err) => {
+      console.error('Failed to fetch movies:', err)
+    })
+  }, [])
+
+  if (!mov) return null
 
   return (
     <section className='flex flex-col gap-5 mb-5'>
@@ -22,9 +36,9 @@ const PortraitGrid = ({type = 'Top 10', filterKey = 'isTopRated', onShowDetail})
 
       <div className='relative'>
         <Arrow template='left'></Arrow>
-        <div className='relative flex flex-nowrap overflow-x-auto overflow-y-clip scrollbar-hide gap-4 text-light-primary'>
-          {movies.slice(0,6).map((movie) => 
-            <div key={movie.id} className="relative group w-1/4 shrink-0 md:grow md:w-fit">
+        <div className='relative flex flex-nowrap lg:grid grid-cols-5 scrollbar-hide gap-4 text-light-primary'>
+          {movies.slice(0,5).map((movie) => 
+            <div key={movie.id} className="relative group w-1/6 shrink-0 md:grow md:w-fit">
               <div className='block md:pointer-events-none' onClick={() => {
                 if(window.innerWidth < 768) {
                   onShowDetail(movie)

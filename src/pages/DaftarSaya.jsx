@@ -6,6 +6,8 @@ import PortraitCard from '../components/molecules/PortraitCard'
 import HoverCard from '../components/organisms/HoverCard'
 import allFilms from '../allFilms.json'
 import PopUp from '../components/organisms/PopUpDetail'
+import axios from 'axios'
+
 
 const DaftarSaya = () => {
    const [myListMovies, setMyListMovies] = useState([])

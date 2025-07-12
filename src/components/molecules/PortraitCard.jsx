@@ -9,7 +9,7 @@ const PortraitCard = ({movie: {title, poster_path, badges = []}}) => {
 
   return (
     <div className="relative bg-page-header rounded-lg cursor-pointer overflow-hidden">
-        <img src={poster_path} alt={title} className='w-full h-auto'/>
+        <img src={poster_path} alt={title} className='w-full max-w-50 aspect-[3/5] object-cover' onError={(e) => { e.target.src = '/fallback-image.jpg' }}/>
 
         {badges.map((badge, index) => (
             <div key={index} className={`absolute ${badgePositionClass[badge] || ''} shadow-md z-10`}>

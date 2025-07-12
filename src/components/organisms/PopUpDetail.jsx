@@ -18,7 +18,7 @@ const PopUpDetail = ({movie, onClose, toggleMyList, movies}) => {
                 <section className='relative w-full'>
                     {/* Hero Image */}
                     <figure className="relative max-h-[200px] md:max-h-[300px] overflow-hidden">
-                        <img className="w-full object-cover rounded-t-lg" src={movie.poster_path} alt="Hero Image" />
+                        <img className="w-full aspect-[16/9] object-cover rounded-t-lg" src={movie.poster_path} alt="Hero Image" />
                         <div className="absolute bottom-0 left-0 w-full h-[80%] bg-gradient-to-t from-page-header/100 from-5% via-page-header/80 via-50% to-transparent z-2"/>
                     </figure>
 
