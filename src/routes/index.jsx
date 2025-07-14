@@ -3,7 +3,7 @@ import Login from '../pages/Login'
 import Register from '../pages/Register'
 import Home from '../pages/Home'
 import DaftarSaya from '../pages/DaftarSaya'
-import Get from '../services/api/Get'
+import Test from '../pages/test'
 import Films from '../pages/Films'
 import Series from '../pages/Series'
 
@@ -37,7 +37,7 @@ export const router = createBrowserRouter([
         element: <Series/>,
     },
     {
-        path: "/Get",
-        element: <Get/>,
+        path: "/api-test",
+        element: <Test/>,
     },
 ])
