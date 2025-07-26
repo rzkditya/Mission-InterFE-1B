@@ -16,6 +16,8 @@ const Input = ({
     variant = 'username', 
     id = 'username', 
     name = 'username',
+    value,
+    onChange,
 }) => {
     const baseStyle = 'w-full h-7 md:h-9 px-5 border border-white/40 rounded-full text-xs md:text-lg text-light-primary';
 
@@ -28,6 +30,8 @@ const Input = ({
             name={name} 
             placeholder={placeholder} 
             className={baseStyle} 
+            value={value}
+            onChange={onChange}
             required
         />
     )
