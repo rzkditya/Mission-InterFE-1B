@@ -49,7 +49,7 @@
     "rating": 4.2,
     "badges":[],
     "myList": false,
-    "watched": false,
+    "watched": true,
     "isTrending" : false,
     "isTopRated": true,
     "isNewRelease": false
@@ -100,7 +100,7 @@
     "rating": 4.8,
     "badges":[],
     "myList": false,
-    "watched": false,
+    "watched": true,
     "isTrending" : false,
     "isTopRated": false,
     "isNewRelease": true

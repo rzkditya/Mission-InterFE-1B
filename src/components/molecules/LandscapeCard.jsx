@@ -21,9 +21,9 @@ const LandscapeCard = ({movie: {title, poster_path, rating, badge}}) => {
         </section>
 
         {badge && (
-            <div className={`absolute ${badgePositionClass} shadow-md z-10`}>
-                <Badge variant={badge} />
-            </div>
+          <div className={`absolute ${badgePositionClass} shadow-md z-10`}>
+              <Badge variant={badge} />
+          </div>
         )}
     </div>
   )

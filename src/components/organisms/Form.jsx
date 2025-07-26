@@ -41,7 +41,7 @@ const Form = ({template = 'login'}) => {
         setForm((prev) => ({...prev, [name]: value}))
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
 
         const cleanForm = {
@@ -50,8 +50,24 @@ const Form = ({template = 'login'}) => {
             password: form.password.trim(),
         }
 
+        const confirmPassword = e.target['password-cfrm'].value.trim()
+        if (cleanForm.password !== confirmPassword) {
+            alert('Password dan konfirmasi tidak cocok')
+            return
+        }
+
+        delete cleanForm['password-cfrm']
+
         console.log("Form before submit:", cleanForm)
-        register(cleanForm)
+        await register(cleanForm)
+
+        const { user } = useAuthStore.getState()
+
+        if (user) {
+            navigate('/home')
+        } else {
+            alert(error || 'Registrasi gagal')
+        }
     }
 
     const templateLogin = () => (

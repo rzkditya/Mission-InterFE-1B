@@ -78,7 +78,7 @@ const PopUpDetail = ({movie, onClose, toggleMyList, movies}) => {
                         <div className='relative'>
                             <div className='relative flex flex-nowrap scrollbar-hide gap-4 text-light-primary'>
                                 {movies.slice(0,3).map((recMovie) => (
-                                <div key={recMovie.id} className="relative group shrink grow">
+                                <div key={recMovie.id} className="relative group aspect-[16/9] shrink grow">
                                     <Card movie={recMovie} />
 
                                     <div className='absolute -top-2 -left-1/2 z-30 opacity-0 group-hover:opacity-100 group-hover:translate-y-2 transition-all duration-300 pointer-events-none group-hover:pointer-events-auto'>
