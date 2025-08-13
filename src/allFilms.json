@@ -1,90 +1,76 @@
 [
-    {
+  {
     "id": 1,
     "title": "Little Mermaid",
     "category": "Films",
-    "genres": [
-      "Adventure",
-      "Fantasy",
-      "Romance"
-    ],
+    "genres": ["Adventure", "Fantasy", "Romance"],
     "age_rating": "PG",
     "poster_path": "/assets/posters/portrait/Little Mermaid.svg",
     "rating": 4,
-    "badges":[],
+    "badges": [],
     "myList": false,
-    "watched": false,
-    "isTrending" : true,
+    "watched": true,
+    "isTrending": true,
     "isTopRated": false,
     "isNewRelease": false
-
   },
   {
     "id": 2,
     "title": "Shazam FOTG",
     "category": "Films",
-    "genres": [
-      "Action",
-      "Adventure"
-    ],
+    "genres": ["Action", "Adventure"],
     "age_rating": "13+",
     "poster_path": "/assets/posters/portrait/Shazam FOTG.svg",
     "rating": 4,
-    "badges":["Top10"],
+    "badges": ["Top10"],
     "myList": false,
     "watched": true,
-    "isTrending" : true,
-    "isTopRated": false,
+    "isTrending": true,
+    "isTopRated": true,
     "isNewRelease": false
   },
   {
     "id": 3,
     "title": "A Man Called Otto",
     "category": "Films",
-    "genres": [
-      
-    ],
+    "genres": [],
     "age_rating": "15+",
     "poster_path": "/assets/posters/portrait/A Man Called Otto.svg",
     "rating": 4.2,
-    "badges":[],
+    "badges": [],
     "myList": false,
     "watched": false,
-    "isTrending" : false,
+    "isTrending": false,
     "isTopRated": true,
-    "isNewRelease": false
+    "isNewRelease": true
   },
   {
     "id": 4,
     "title": "Alice In Borderland",
     "category": "Series",
-    "genres": [
-      
-    ],
+    "genres": [],
     "age_rating": "18+",
     "poster_path": "/assets/posters/portrait/Alice In Borderland.svg",
     "rating": 4.5,
-    "badges":[],
+    "badges": [],
     "myList": false,
     "watched": true,
-    "isTrending" : false,
+    "isTrending": false,
     "isTopRated": true,
-    "isNewRelease": false
+    "isNewRelease": true
   },
   {
     "id": 5,
     "title": "All Of Us Dead",
     "category": "Series",
-    "genres": [
-      
-    ],
+    "genres": [],
     "age_rating": "18+",
     "poster_path": "/assets/posters/portrait/All Of Us Dead.svg",
     "rating": 4.3,
-    "badges":[],
+    "badges": [],
     "myList": false,
     "watched": true,
-    "isTrending" : false,
+    "isTrending": false,
     "isTopRated": false,
     "isNewRelease": true
   },
@@ -92,16 +78,14 @@
     "id": 6,
     "title": "Avatar The Way Of Water",
     "category": "Films",
-    "genres": [
-      
-    ],
+    "genres": [],
     "age_rating": "18+",
     "poster_path": "/assets/posters/portrait/Avatar TWOW.svg",
     "rating": 4.8,
-    "badges":[],
+    "badges": [],
     "myList": false,
     "watched": false,
-    "isTrending" : false,
+    "isTrending": false,
     "isTopRated": false,
     "isNewRelease": true
   },
@@ -109,19 +93,14 @@
     "id": 7,
     "title": "Big Hero 6",
     "category": "Films",
-    "genres": [
-      
-    ],
+    "genres": [],
     "age_rating": "PG",
     "poster_path": "/assets/posters/portrait/Big Hero 6.svg",
     "rating": 4,
-    "badges":[
-      "New",
-      "Top10"
-    ],
+    "badges": ["New", "Top10"],
     "myList": false,
     "watched": false,
-    "isTrending" : false,
+    "isTrending": false,
     "isTopRated": false,
     "isNewRelease": true
   },
@@ -129,33 +108,29 @@
     "id": 8,
     "title": "Bluelock",
     "category": "Series",
-    "genres": [
-      
-    ],
+    "genres": [],
     "age_rating": "18+",
     "poster_path": "/assets/posters/portrait/Bluelock.svg",
     "rating": 4.5,
-    "badges":[],
+    "badges": [],
     "myList": false,
     "watched": false,
-    "isTrending" : false,
+    "isTrending": false,
     "isTopRated": true,
-    "isNewRelease": false
+    "isNewRelease": true
   },
   {
     "id": 9,
     "title": "Duty After School",
     "category": "Series",
-    "genres": [
-      
-    ],
+    "genres": [],
     "age_rating": "18+",
     "poster_path": "/assets/posters/portrait/Duty After School.svg",
     "rating": 3.9,
-    "badges":[],
+    "badges": [],
     "myList": false,
     "watched": true,
-    "isTrending" : true,
+    "isTrending": true,
     "isTopRated": false,
     "isNewRelease": false
   },
@@ -163,16 +138,14 @@
     "id": 10,
     "title": "Fast X",
     "category": "Films",
-    "genres": [
-      
-    ],
+    "genres": [],
     "age_rating": "18+",
     "poster_path": "/assets/posters/portrait/Fast X.svg",
     "rating": 3.9,
-    "badges":[],
+    "badges": [],
     "myList": false,
     "watched": false,
-    "isTrending" : true,
+    "isTrending": true,
     "isTopRated": false,
     "isNewRelease": false
   },
@@ -180,16 +153,14 @@
     "id": 11,
     "title": "Korea",
     "category": "Films",
-    "genres": [
-      
-    ],
+    "genres": [],
     "age_rating": "13+",
     "poster_path": "/assets/posters/portrait/Korea.svg",
     "rating": 3.7,
-    "badges":[],
+    "badges": [],
     "myList": false,
     "watched": false,
-    "isTrending" : false,
+    "isTrending": false,
     "isTopRated": false,
     "isNewRelease": true
   },
@@ -197,16 +168,14 @@
     "id": 12,
     "title": "Megan",
     "category": "Films",
-    "genres": [
-      
-    ],
+    "genres": [],
     "age_rating": "18+",
     "poster_path": "/assets/posters/portrait/Megan.svg",
     "rating": 3.9,
-    "badges":[],
+    "badges": [],
     "myList": false,
     "watched": false,
-    "isTrending" : false,
+    "isTrending": false,
     "isTopRated": true,
     "isNewRelease": false
   },
@@ -214,16 +183,14 @@
     "id": 13,
     "title": "Missing",
     "category": "Films",
-    "genres": [
-      
-    ],
+    "genres": [],
     "age_rating": "18+",
     "poster_path": "/assets/posters/portrait/Missing.svg",
     "rating": 4.2,
-    "badges":[],
+    "badges": [],
     "myList": false,
     "watched": false,
-    "isTrending" : true,
+    "isTrending": true,
     "isTopRated": false,
     "isNewRelease": false
   },
@@ -231,16 +198,14 @@
     "id": 14,
     "title": "Rio",
     "category": "Series",
-    "genres": [
-      
-    ],
+    "genres": [],
     "age_rating": "18+",
     "poster_path": "/assets/posters/portrait/Rio.svg",
     "rating": 4,
-    "badges":[],
+    "badges": [],
     "myList": false,
     "watched": false,
-    "isTrending" : true,
+    "isTrending": true,
     "isTopRated": false,
     "isNewRelease": false
   },
@@ -248,16 +213,14 @@
     "id": 15,
     "title": "Suzume",
     "category": "Films",
-    "genres": [
-      
-    ],
+    "genres": [],
     "age_rating": "18+",
     "poster_path": "/assets/posters/portrait/Suzume.svg",
     "rating": 3.9,
-    "badges":[],
+    "badges": [],
     "myList": false,
     "watched": false,
-    "isTrending" : true,
+    "isTrending": true,
     "isTopRated": false,
     "isNewRelease": false
   },
@@ -265,16 +228,14 @@
     "id": 16,
     "title": "The Batman",
     "category": "Films",
-    "genres": [
-      
-    ],
+    "genres": [],
     "age_rating": "18+",
     "poster_path": "/assets/posters/portrait/The Batman.svg",
     "rating": 4.5,
-    "badges":[],
+    "badges": [],
     "myList": false,
     "watched": false,
-    "isTrending" : false,
+    "isTrending": false,
     "isTopRated": false,
     "isNewRelease": true
   },
@@ -282,16 +243,14 @@
     "id": 17,
     "title": "The Tomorrow War",
     "category": "Films",
-    "genres": [
-      
-    ],
+    "genres": [],
     "age_rating": "18+",
     "poster_path": "/assets/posters/portrait/The Tomorrow War.svg",
     "rating": 4.2,
-    "badges":[],
+    "badges": [],
     "myList": true,
     "watched": false,
-    "isTrending" : false,
+    "isTrending": false,
     "isTopRated": true,
     "isNewRelease": false
   }
