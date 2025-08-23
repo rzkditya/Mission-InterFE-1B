@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Main from "../layouts/MenuLayout";
 import Header from "../components/organisms/Header";
 import Footer from "../components/organisms/Footer";
@@ -6,30 +6,31 @@ import PortraitGrid from "../components/organisms/PortraitGrid";
 import LandscapeGrid from "../components/organisms/LandscapeGrid";
 import PopUp from "../components/organisms/PopUpDetail";
 import allFilms from "../allFilms.json";
+import { toggleMyList } from "../utils/myList";
 
 const Home = () => {
   const [selectedMovie, setSelectedMovie] = useState(null);
-  const [movieList, setMovieList] = useState(() => {
-    const saved = JSON.parse(localStorage.getItem("myList")) || [];
-    return allFilms.map((movie) => ({
-      ...movie,
-      myList: saved.includes(movie.id),
-    }));
-  });
 
-  function toggleMyList(movieId) {
+  const [movieList, setMovieList] = useState([]);
+
+  useEffect(() => {
+    const myList = getMyList();
+    setMovieList(
+      allFilms.map((film) => ({
+        ...film,
+        myList: !!myList.find((m) => m.id === film.id),
+      }))
+    );
+  }, []);
+
+  function handleToggle(movieId) {
+    const updated = toggleMyList(movieId);
     setMovieList((prev) =>
-      prev.map((movie) =>
-        movie.id === movieId ? { ...movie, myList: !movie.myList } : movie
-      )
+      prev.map((m) => ({
+        ...m,
+        myList: !!updated.find((um) => um.id === m.id),
+      }))
     );
-
-    const updated = movieList.map((m) =>
-      m.id === movieId ? { ...m, myList: !m.myList } : m
-    );
-
-    const savedIds = updated.filter((m) => m.myList).map((m) => m.id);
-    localStorage.setItem("myList", JSON.stringify(savedIds));
   }
 
   function handleShowDetail(movie) {
@@ -50,7 +51,7 @@ const Home = () => {
         <LandscapeGrid
           onShowDetail={handleShowDetail}
           movieList={movieList}
-          toggleMyList={toggleMyList}
+          toggleMyList={handleToggle}
         />
         <PortraitGrid
           title="Top Rating Film dan Series Hari Ini"
@@ -58,7 +59,7 @@ const Home = () => {
           itemsPerPage={5}
           onShowDetail={handleShowDetail}
           movieList={movieList}
-          toggleMyList={toggleMyList}
+          toggleMyList={handleToggle}
         />
         <PortraitGrid
           title="Film Trending"
@@ -66,7 +67,7 @@ const Home = () => {
           itemsPerPage={5}
           onShowDetail={handleShowDetail}
           movieList={movieList}
-          toggleMyList={toggleMyList}
+          toggleMyList={handleToggle}
         />
         <PortraitGrid
           title="Rilis Baru"
@@ -74,7 +75,7 @@ const Home = () => {
           itemsPerPage={5}
           onShowDetail={handleShowDetail}
           movieList={movieList}
-          toggleMyList={toggleMyList}
+          toggleMyList={handleToggle}
         />
       </Main>
       <Footer />
@@ -84,7 +85,7 @@ const Home = () => {
           <PopUp
             movie={movieList.find((m) => m.id === selectedMovie.id)}
             onClose={handleCloseDetail}
-            toggleMyList={toggleMyList}
+            toggleMyList={handleToggle}
             movies={movieList}
           />
         </div>
