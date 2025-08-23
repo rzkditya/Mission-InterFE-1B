@@ -5,6 +5,7 @@ import HoverCard from "./HoverCard";
 import allMovies from "../../allFilms.json";
 
 const gridColsMap = {
+  3: "md:grid-cols-3",
   4: "md:grid-cols-4",
   5: "md:grid-cols-5",
   6: "md:grid-cols-6",
@@ -46,7 +47,7 @@ const PortraitGrid = ({
           {visibleCard.map((movie) => (
             <div
               key={movie.id}
-              className="relative group w-[25vw] sm:w-full flex-shrink-0"
+              className="relative group w-[25vw] [768px]:w-full flex-shrink-0"
             >
               <div
                 className="block md:pointer-events-none"

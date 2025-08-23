@@ -6,7 +6,7 @@ import PortraitGrid from "../components/organisms/PortraitGrid";
 import LandscapeGrid from "../components/organisms/LandscapeGrid";
 import PopUp from "../components/organisms/PopUpDetail";
 import allFilms from "../allFilms.json";
-import { toggleMyList } from "../utils/myList";
+import { toggleMyList, getMyList } from "../utils/myList";
 
 const Home = () => {
   const [selectedMovie, setSelectedMovie] = useState(null);

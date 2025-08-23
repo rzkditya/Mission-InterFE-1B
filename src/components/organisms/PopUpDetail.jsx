@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Card from "../molecules/PortraitCard";
+import PortraitGrid from "../organisms/PortraitGrid";
 import HoverCard from "./HoverCard";
 import Button from "../atoms/Button";
 
@@ -24,7 +24,7 @@ const PopUpDetail = ({ movie, onClose, toggleMyList, movies }) => {
         {/* Cover Section */}
         <section className="relative w-full">
           {/* Hero Image */}
-          <figure className="relative max-h-[200px] md:max-h-[300px] overflow-hidden">
+          <figure className="relative max-h-[200px] md:max-h-[300px] lg:max-h-[300px] overflow-hidden">
             <img
               className="w-full object-cover rounded-t-lg"
               src={movie.poster_path}
@@ -49,7 +49,7 @@ const PopUpDetail = ({ movie, onClose, toggleMyList, movies }) => {
           <section className="absolute bottom-[10%] left-0 flex flex-col w-full px-8 py-4 gap-3 z-3">
             <h2 className="text-2xl font-bold">{movie.title}</h2>
             <div className="flex items-center gap-4">
-              <Button className="py-1 px-3 rounded-full  bg-primary-300">
+              <Button className="py-1 px-3 rounded-full bg-primary-300">
                 Mulai
               </Button>
               <Button onClick={() => toggleMyList(movie.id)} variant="clear">
@@ -104,23 +104,8 @@ const PopUpDetail = ({ movie, onClose, toggleMyList, movies }) => {
           </div>
 
           {/* Card Section */}
-          <div className="flex  flex-col gap-4">
-            <h2 className="text-light-primary text-xl font-bold">
-              Rekomendasi Serupa
-            </h2>
-            <div className="relative">
-              <div className="relative flex flex-nowrap scrollbar-hide gap-4 text-light-primary">
-                {movies.slice(0, 3).map((recMovie) => (
-                  <div key={recMovie.id} className="relative group shrink grow">
-                    <Card movie={recMovie} />
-
-                    <div className="absolute -top-2 -left-1/2 z-30 opacity-0 group-hover:opacity-100 group-hover:translate-y-2 transition-all duration-300 pointer-events-none group-hover:pointer-events-auto">
-                      <HoverCard movie={recMovie} />
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
+          <div className="flex flex-col h-fit gap-4">
+            <PortraitGrid title="Rekomendasi Serupa" itemsPerPage={3} />
           </div>
         </section>
       </div>
