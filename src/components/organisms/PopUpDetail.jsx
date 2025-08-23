@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Card from "../molecules/PortraitCard";
 import PortraitGrid from "../organisms/PortraitGrid";
-import HoverCard from "./HoverCard";
 import Button from "../atoms/Button";
 
 const PopUpDetail = ({ movie, onClose, toggleMyList, movies }) => {
@@ -19,14 +19,14 @@ const PopUpDetail = ({ movie, onClose, toggleMyList, movies }) => {
   );
 
   return (
-    <div className="flex justify-center items-center w-full h-full bg-page-header/80">
-      <div className="relative flex flex-col justify-center items-center w-[90%] md:w-[70%] lg:w-[50%] rounded-xl bg-page-header text-md text-light-primary drop-shadow-xl drop-shadow-light-primary/10">
+    <div className="flex justify-center items-center w-full h-full bg-page-header/80 text-base">
+      <div className="relative flex flex-col justify-center items-center w-[90%] md:w-[70%] lg:w-[40%] rounded-xl bg-page-header text-light-primary drop-shadow-xl drop-shadow-light-primary/10">
         {/* Cover Section */}
         <section className="relative w-full">
           {/* Hero Image */}
-          <figure className="relative max-h-[200px] md:max-h-[300px] lg:max-h-[300px] overflow-hidden">
+          <figure className="relative max-h-[100px] md:max-h-[200px] overflow-hidden">
             <img
-              className="w-full object-cover rounded-t-lg"
+              className="w-full aspect-[16/9] object-cover rounded-t-lg"
               src={movie.poster_path}
               alt="Hero Image"
             />
@@ -49,7 +49,7 @@ const PopUpDetail = ({ movie, onClose, toggleMyList, movies }) => {
           <section className="absolute bottom-[10%] left-0 flex flex-col w-full px-8 py-4 gap-3 z-3">
             <h2 className="text-2xl font-bold">{movie.title}</h2>
             <div className="flex items-center gap-4">
-              <Button className="py-1 px-3 rounded-full bg-primary-300">
+              <Button className="py-1 px-3 rounded-full  bg-primary-300">
                 Mulai
               </Button>
               <Button onClick={() => toggleMyList(movie.id)} variant="clear">
@@ -66,7 +66,7 @@ const PopUpDetail = ({ movie, onClose, toggleMyList, movies }) => {
         </section>
 
         {/* Content Section */}
-        <section className="flex flex-col w-full px-8 py-4 gap-3 lg:gap-6">
+        <section className="flex flex-col w-full h-full px-8 py-4 gap-3">
           {/* Text Section */}
           <div className="flex w-full gap-8">
             <div className="flex flex-col w-[55%] gap-3 text-xs md:text-sm">
@@ -104,9 +104,7 @@ const PopUpDetail = ({ movie, onClose, toggleMyList, movies }) => {
           </div>
 
           {/* Card Section */}
-          <div className="flex flex-col h-fit gap-4">
-            <PortraitGrid title="Rekomendasi Serupa" itemsPerPage={3} />
-          </div>
+          <PortraitGrid title="Rekomendasi Serupa" itemsPerPage={3} />
         </section>
       </div>
     </div>

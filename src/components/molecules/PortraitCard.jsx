@@ -20,7 +20,7 @@ const PortraitCard = ({ movie: { title, poster_path, badges = [] } }) => {
           key={index}
           className={`absolute ${
             badgePositionClass[badge] || ""
-          } shadow-md z-10`}
+          } shadow-md z-5`}
         >
           <Badge variant={badge} />
         </div>

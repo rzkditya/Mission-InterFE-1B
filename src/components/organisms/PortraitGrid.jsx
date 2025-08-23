@@ -47,7 +47,7 @@ const PortraitGrid = ({
           {visibleCard.map((movie) => (
             <div
               key={movie.id}
-              className="relative group w-[25vw] [768px]:w-full flex-shrink-0"
+              className="relative group flex-shrink-0 w-full sm:w-auto"
             >
               <div
                 className="block md:pointer-events-none"
