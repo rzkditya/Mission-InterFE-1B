@@ -5,10 +5,10 @@ import HoverCard from "./HoverCard";
 import allMovies from "../../allFilms.json";
 
 const gridColsMap = {
-  3: "md:grid-cols-3",
-  4: "md:grid-cols-4",
-  5: "md:grid-cols-5",
-  6: "md:grid-cols-6",
+  3: "sm:grid-cols-3",
+  4: "sm:grid-cols-4",
+  5: "sm:grid-cols-5",
+  6: "sm:grid-cols-6",
 };
 
 const PortraitGrid = ({
@@ -34,23 +34,23 @@ const PortraitGrid = ({
   };
 
   return (
-    <section className="flex flex-col gap-5 mb-5">
+    <section className="flex flex-col gap-3 mb-5">
       <h2 className="text-light-primary text-xl font-medium">{title}</h2>
 
       <div className="relative">
         <Arrow template="left" onClick={handlePrev}></Arrow>
         <div
           className={`relative flex flex-nowrap sm:grid ${
-            gridColsMap[itemsPerPage] || "md:grid-cols-4"
+            gridColsMap[itemsPerPage] || "sm:grid-cols-4"
           } overflow-x-auto overflow-y-clip scrollbar-hide sm:overflow-visible gap-4 text-light-primary`}
         >
           {visibleCard.map((movie) => (
             <div
               key={movie.id}
-              className="relative group flex-shrink-0 w-full sm:w-auto"
+              className="relative group flex-shrink-0 w-[25%] sm:w-auto"
             >
               <div
-                className="block md:pointer-events-none"
+                className="block sm:pointer-events-none"
                 onClick={() => {
                   if (window.innerWidth < 768) {
                     onShowDetail(movie);
@@ -60,7 +60,7 @@ const PortraitGrid = ({
                 <Card movie={movie} />
               </div>
 
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 group-hover:scale-120 transition-opacity duration-300 hover:z-10 pointer-events-none md:pointer-events-auto">
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 group-hover:scale-120 transition-opacity duration-300 hover:z-10 pointer-events-none sm:pointer-events-auto">
                 <HoverCard
                   movie={movie}
                   onShowDetail={() => onShowDetail(movie)}
