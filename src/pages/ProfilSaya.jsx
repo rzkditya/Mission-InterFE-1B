@@ -7,14 +7,20 @@ import ProfileIcon from "@/assets/images/Profile.svg";
 import WarningIcon from "../assets/images/Warning.svg";
 import Card from "../components/molecules/PortraitCard";
 import HoverCard from "../components/organisms/HoverCard";
+import PopUp from "../components/organisms/PopUpDetail";
 import { Link } from "react-router-dom";
-import { getMyList } from "../utils/myList";
+import { toggleMyList, getMyList } from "../utils/myList";
 
 const labelStyle = "text-light-disabled";
 const inputStyle =
   "relative flex flex-col w-full px-3 py-1 bg-other-paper rounded-md outline-1 outline-light-disabled";
 
 const ProfilSaya = () => {
+  const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+  const users = JSON.parse(localStorage.getItem("users")) || [];
+  const userId = loggedInUser.id;
+
+  const [selectedMovie, setSelectedMovie] = useState(null);
   const [formData, setFormData] = useState({
     username: "",
     email: "",
@@ -28,11 +34,8 @@ const ProfilSaya = () => {
   const [myList, setMyList] = useState([]);
 
   useEffect(() => {
-    setMyList(getMyList());
+    setMyList(getMyList(userId));
   }, []);
-
-  const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
-  const users = JSON.parse(localStorage.getItem("users")) || [];
 
   useEffect(() => {
     if (loggedInUser) {
@@ -50,6 +53,11 @@ const ProfilSaya = () => {
       [field]: !prev[field],
     }));
   };
+
+  function handleToggle(movieId) {
+    const updated = toggleMyList(userId, movieId);
+    setMyList(updated);
+  }
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -78,6 +86,14 @@ const ProfilSaya = () => {
 
     alert("Profil berhasil diperbarui!");
   };
+
+  function handleShowDetail(movie) {
+    setSelectedMovie(movie);
+  }
+
+  function handleCloseDetail() {
+    setSelectedMovie(null);
+  }
 
   return (
     <>
@@ -212,40 +228,57 @@ const ProfilSaya = () => {
             </Link>
           </div>
 
-          <div className="relative">
-            <div
-              className="relative grid grid-cols-3 grid-rows-2 sm:grid-cols-6 sm:grid-rows-1
+          {myList.length === 0 ? (
+            <p className="text-light-secondary">
+              Belum ada film di daftar Anda.
+            </p>
+          ) : (
+            <div className="relative">
+              <div
+                className="relative grid grid-cols-3 grid-rows-2 sm:grid-cols-6 sm:grid-rows-1
           } overflow-x-auto overflow-y-clip scrollbar-hide sm:overflow-visible gap-4 text-light-primary"
-            >
-              {myList.map((movie) => (
-                <div
-                  key={movie.id}
-                  className="relative group flex-shrink-0 w-full sm:w-auto"
-                >
+              >
+                {myList.map((movie) => (
                   <div
-                    className="block sm:pointer-events-none"
-                    onClick={() => {
-                      if (window.innerWidth < 768) {
-                        onShowDetail(movie);
-                      }
-                    }}
+                    key={movie.id}
+                    className="relative group flex-shrink-0 w-full sm:w-auto"
                   >
-                    <Card movie={movie} />
-                  </div>
+                    <div
+                      className="block sm:pointer-events-none"
+                      onClick={() => {
+                        if (window.innerWidth < 768) {
+                          onShowDetail(movie);
+                        }
+                      }}
+                    >
+                      <Card movie={movie} />
+                    </div>
 
-                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 group-hover:scale-120 transition-opacity duration-300 hover:z-10 pointer-events-none sm:pointer-events-auto">
-                    <HoverCard
-                      movie={movie}
-                      onShowDetail={() => onShowDetail(movie)}
-                    />
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 group-hover:scale-120 transition-opacity duration-300 hover:z-10 pointer-events-none sm:pointer-events-auto">
+                      <HoverCard
+                        movie={movie}
+                        onShowDetail={() => handleShowDetail(movie)}
+                        onToggleMyList={() => handleToggle(movie.id)}
+                      />
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
-          </div>
+          )}
         </section>
       </main>
       <Footer />
+
+      {selectedMovie && (
+        <div className="fixed inset-0 z-50">
+          <PopUp
+            movie={selectedMovie}
+            onClose={handleCloseDetail}
+            toggleMyList={handleToggle}
+          />
+        </div>
+      )}
     </>
   );
 };
