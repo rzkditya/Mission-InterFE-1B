@@ -12,21 +12,22 @@ const DaftarSaya = () => {
   const [selectedMovie, setSelectedMovie] = useState(null);
   const [myList, setMyList] = useState([]);
 
+  const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+  const userId = loggedInUser?.id;
+
   useEffect(() => {
-    setMyList(getMyList());
-  }, []);
+    if (userId) {
+      setMyList(getMyList(userId));
+    }
+  }, [userId]);
 
   function handleToggle(movieId) {
-    const updated = toggleMyList(movieId);
-    setMyList((prev) =>
-      prev
-        .filter((m) => updated.find((um) => um.id === m.id)) // hapus yang sudah tidak ada
-        .map((m) => ({ ...m, myList: true }))
-    );
+    const updated = toggleMyList(userId, movieId);
+    setMyList(updated);
   }
 
   function handleShowDetail(movie) {
-    setSelectedMovie(movie.id);
+    setSelectedMovie(movie);
   }
 
   function handleCloseDetail() {
@@ -79,13 +80,9 @@ const DaftarSaya = () => {
       {selectedMovie && (
         <div className="fixed inset-0 z-50">
           <PopUp
-            movie={
-              myList.find((m) => m.id === selectedMovie) ||
-              allFilms.find((m) => m.id === selectedMovie)
-            }
+            movie={selectedMovie}
             onClose={handleCloseDetail}
             toggleMyList={handleToggle}
-            movies={allFilms}
           />
         </div>
       )}

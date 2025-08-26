@@ -13,18 +13,22 @@ const Home = () => {
 
   const [movieList, setMovieList] = useState([]);
 
+  const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+  const userId = loggedInUser?.id;
+
   useEffect(() => {
-    const myList = getMyList();
+    if (!userId) return;
+    const myList = getMyList(userId);
     setMovieList(
       allFilms.map((film) => ({
         ...film,
         myList: !!myList.find((m) => m.id === film.id),
       }))
     );
-  }, []);
+  }, [userId]);
 
   function handleToggle(movieId) {
-    const updated = toggleMyList(movieId);
+    const updated = toggleMyList(userId, movieId);
     setMovieList((prev) =>
       prev.map((m) => ({
         ...m,
