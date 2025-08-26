@@ -6,6 +6,7 @@ import DaftarSaya from '../pages/DaftarSaya'
 import Test from '../pages/test'
 import Films from '../pages/Films'
 import Series from '../pages/Series'
+import ProfilSaya from '../pages/ProfilSaya'
 
 export const router = createBrowserRouter([
     {
@@ -35,6 +36,10 @@ export const router = createBrowserRouter([
     {
         path: "/series",
         element: <Series/>,
+    },
+    {
+        path: "/profil-saya",
+        element: <ProfilSaya/>,
     },
     {
         path: "/api-test",
