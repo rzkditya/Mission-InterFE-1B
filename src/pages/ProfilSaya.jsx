@@ -5,7 +5,10 @@ import Footer from "../components/organisms/Footer";
 import Button from "../components/atoms/Button";
 import ProfileIcon from "@/assets/images/Profile.svg";
 import WarningIcon from "../assets/images/Warning.svg";
-import DaftarSaya from "../components/organisms/PortraitGrid";
+import Card from "../components/molecules/PortraitCard";
+import HoverCard from "../components/organisms/HoverCard";
+import { Link } from "react-router-dom";
+import { getMyList } from "../utils/myList";
 
 const labelStyle = "text-light-disabled";
 const inputStyle =
@@ -22,6 +25,11 @@ const ProfilSaya = () => {
     email: false,
     password: false,
   });
+  const [myList, setMyList] = useState([]);
+
+  useEffect(() => {
+    setMyList(getMyList());
+  }, []);
 
   const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
   const users = JSON.parse(localStorage.getItem("users")) || [];
@@ -193,12 +201,48 @@ const ProfilSaya = () => {
           </div>
         </section>
 
-        <section className="relative flex flex-col w-full text-light-primary gap-4">
-          <DaftarSaya title="Daftar Saya" filterKey="myList" />
+        <section className="flex flex-col w-full gap-3 mb-5">
+          <div className="flex justify-between">
+            <h2 className="text-light-primary text-xl font-medium">
+              Daftar Saya
+            </h2>
 
-          <button className="absolute top-0 right-0 p-2 text-lg cursor-pointer">
-            Lihat Semua
-          </button>
+            <Link to="/daftar-saya">
+              <h3 className="text-light-disabled text-xl">Lihat Semua</h3>
+            </Link>
+          </div>
+
+          <div className="relative">
+            <div
+              className="relative grid grid-cols-3 grid-rows-2 sm:grid-cols-6 sm:grid-rows-1
+          } overflow-x-auto overflow-y-clip scrollbar-hide sm:overflow-visible gap-4 text-light-primary"
+            >
+              {myList.map((movie) => (
+                <div
+                  key={movie.id}
+                  className="relative group flex-shrink-0 w-full sm:w-auto"
+                >
+                  <div
+                    className="block sm:pointer-events-none"
+                    onClick={() => {
+                      if (window.innerWidth < 768) {
+                        onShowDetail(movie);
+                      }
+                    }}
+                  >
+                    <Card movie={movie} />
+                  </div>
+
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 group-hover:scale-120 transition-opacity duration-300 hover:z-10 pointer-events-none sm:pointer-events-auto">
+                    <HoverCard
+                      movie={movie}
+                      onShowDetail={() => onShowDetail(movie)}
+                    />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </section>
       </main>
       <Footer />

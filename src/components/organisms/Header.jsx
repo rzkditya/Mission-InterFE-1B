@@ -63,9 +63,12 @@ const Navbar = () => {
             alt="Profile Icon"
           />
           <p className="font-medium">{username}</p>
-          <div className="group">
-            <FontAwesomeIcon icon="fa-solid fa-angle-down" />
-            <section className="invisible group-hover:visible delay-200 absolute w-40 md:w-45 lg:w-55 top-10 md:top-15 lg:top-17 right-4 md:right-10 bg-page-header rounded-sm p-4 md:p-6 lg:p-8 outline-1 outline-light-secondary/10 z-11">
+          <details className="group">
+            <summary className="flex items-center gap-2 md:gap-4 cursor-pointer list-none">
+              <FontAwesomeIcon icon="fa-solid fa-angle-down" />
+            </summary>
+
+            <section className="delay-200 absolute w-40 md:w-45 lg:w-55 top-10 md:top-15 lg:top-17 right-4 md:right-10 bg-page-header rounded-sm p-4 md:p-6 lg:p-8 outline-1 outline-light-secondary/10 z-11">
               <ul className="flex flex-col gap-4 md:gap-8 text-left">
                 <li className="hover:text-primary-default">
                   <Link to="/profil-saya">
@@ -90,7 +93,7 @@ const Navbar = () => {
                 </li>
               </ul>
             </section>
-          </div>
+          </details>
         </div>
       </div>
     </header>
