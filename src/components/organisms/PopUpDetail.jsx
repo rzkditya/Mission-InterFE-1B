@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Card from "../molecules/PortraitCard";
 import PortraitGrid from "../organisms/PortraitGrid";
 import Button from "../atoms/Button";
 
-const PopUpDetail = ({ movie, onClose, toggleMyList, movies }) => {
+const PopUpDetail = ({ movie, onClose, toggleMyList }) => {
   const myListIcon = movie.myList ? (
     <FontAwesomeIcon
       icon="fa-solid fa-heart"
@@ -24,7 +23,7 @@ const PopUpDetail = ({ movie, onClose, toggleMyList, movies }) => {
         {/* Cover Section */}
         <section className="relative w-full">
           {/* Hero Image */}
-          <figure className="relative max-h-[100px] md:max-h-[200px] overflow-hidden">
+          <figure className="relative max-h-[200px] sm:max-h-[200px] overflow-hidden">
             <img
               className="w-full aspect-[16/9] object-cover rounded-t-lg"
               src={movie.poster_path}
@@ -66,10 +65,10 @@ const PopUpDetail = ({ movie, onClose, toggleMyList, movies }) => {
         </section>
 
         {/* Content Section */}
-        <section className="flex flex-col w-full h-full px-8 py-4 gap-3">
+        <section className="flex flex-col w-full h-full px-8 pt-4 gap-3">
           {/* Text Section */}
-          <div className="flex w-full gap-8">
-            <div className="flex flex-col w-[55%] gap-3 text-xs md:text-sm">
+          <div className="flex w-full gap-8 text-xs md:text-sm">
+            <div className="flex flex-col w-[55%] gap-2">
               <div className="flex gap-4 text-light-secondary">
                 <div>2023</div>
                 <div>2j 29m</div>
@@ -86,20 +85,22 @@ const PopUpDetail = ({ movie, onClose, toggleMyList, movies }) => {
                 </p>
               </div>
             </div>
-            <div className="grid grid-cols-[minmax(60px,100px)_10px_1fr] w-[45%] gap-y-2 text-xs md:text-sm text-light-secondary">
+            <div className="grid grid-cols-[minmax(60px,100px)_10px_1fr] w-[45%] gap-y-2 text-light-secondary">
               <span className="font-medium text-light-primary">Cast</span>
               <span className="text-light-primary">:</span>
-              <span>Chris Pratt, Chukwudi Iwuji, Bradley Cooper, dan lain</span>
+              <span className="text-xs">
+                Chris Pratt, Chukwudi Iwuji, Bradley Cooper, dan lain
+              </span>
 
               <span className="font-medium text-light-primary">Genre</span>
               <span className="text-light-primary">:</span>
-              <span>Aksi, Petualangan, Komedi</span>
+              <span className="text-xs">Aksi, Petualangan, Komedi</span>
 
               <span className="font-medium text-light-primary">
                 Pembuat Film
               </span>
               <span className="text-light-primary">:</span>
-              <span>James Gunn</span>
+              <span className="text-xs">James Gunn</span>
             </div>
           </div>
 
