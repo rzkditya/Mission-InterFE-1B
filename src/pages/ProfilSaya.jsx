@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { usePost, useGet, usePut } from "../services/api/api-index";
 import Header from "../components/organisms/Header";
 import Footer from "../components/organisms/Footer";
 import Button from "../components/atoms/Button";
@@ -13,9 +12,6 @@ const inputStyle =
   "relative flex flex-col w-full px-3 py-1 bg-other-paper rounded-md outline-1 outline-light-disabled";
 
 const ProfilSaya = () => {
-  const { data, error } = useGet("userAccounts");
-  const { updateData, loading } = usePut();
-  const [userId, setUserId] = useState(null);
   const [formData, setFormData] = useState({
     username: "",
     email: "",
@@ -27,16 +23,16 @@ const ProfilSaya = () => {
     password: false,
   });
 
-  useEffect(() => {
-    const existUser = JSON.parse(localStorage.getItem("loggedInUser"));
+  const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+  const users = JSON.parse(localStorage.getItem("users")) || [];
 
-    if (existUser) {
+  useEffect(() => {
+    if (loggedInUser) {
       setFormData({
-        username: existUser.username || "",
-        email: existUser.email || "",
+        username: loggedInUser.username || "",
+        email: loggedInUser.email || "",
         password: "",
       });
-      setUserId(existUser.id);
     }
   }, []);
 
@@ -55,28 +51,24 @@ const ProfilSaya = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const updatePayload = {
+    const updateUser = {
+      ...loggedInUser,
       username: formData.username,
       email: formData.email,
     };
 
     if (formData.password.trim() !== "") {
-      updatePayload.password = formData.password.trim();
+      updateUser.password = formData.password.trim();
     }
 
-    try {
-      await updateData(
-        `userAccounts/${userId}`,
-        updatePayload,
-        (updatedUser) => {
-          localStorage.setItem("loggedInUser", JSON.stringify(updatedUser));
-          alert("Profil berhasil diperbarui!");
-        }
-      );
-    } catch (err) {
-      console.log(err);
-      alert("Gagal memperbarui profil");
-    }
+    const updateUsers = users.map((u) =>
+      u.id === loggedInUser.id ? updateUser : u
+    );
+
+    localStorage.setItem("users", JSON.stringify(updateUsers));
+    localStorage.setItem("loggedInUser", JSON.stringify(updateUsers));
+
+    alert("Profil berhasil diperbarui!");
   };
 
   return (
@@ -172,7 +164,7 @@ const ProfilSaya = () => {
                 type="submit"
                 className="w-[15%] p-1 text-sm focus:bg-primary-300"
               >
-                {loading ? "Menyimpan..." : "Simpan"}
+                Simpan
               </Button>
             </form>
           </div>
