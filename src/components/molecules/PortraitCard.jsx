@@ -12,7 +12,7 @@ const PortraitCard = ({ movie: { title, poster_path, badges = [] } }) => {
       <img
         src={poster_path}
         alt={title}
-        className="w-full h-full aspect-[2/3] object-cover"
+        className="w-full h-full aspect-[3/4] object-cover"
       />
 
       {badges.map((badge, index) => (
