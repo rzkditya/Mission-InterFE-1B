@@ -4,7 +4,14 @@ import PortraitGrid from "../organisms/PortraitGrid";
 import Button from "../atoms/Button";
 
 const PopUpDetail = ({ movie, onClose, toggleMyList }) => {
-  const myListIcon = movie.myList ? (
+  const [isInMyList, setIsInMyList] = useState(movie.myList);
+
+  const handleToggle = () => {
+    toggleMyList(movie.id);
+    setIsInMyList((prev) => !prev);
+  };
+
+  const myListIcon = isInMyList ? (
     <FontAwesomeIcon
       icon="fa-solid fa-heart"
       style={{ color: "#cc3333" }}
@@ -51,7 +58,7 @@ const PopUpDetail = ({ movie, onClose, toggleMyList }) => {
               <Button className="py-1 px-3 rounded-full  bg-primary-300">
                 Mulai
               </Button>
-              <Button onClick={() => toggleMyList(movie.id)} variant="clear">
+              <Button onClick={handleToggle} variant="clear">
                 {myListIcon}
               </Button>
               <Button variant="clear" className="absolute right-8">

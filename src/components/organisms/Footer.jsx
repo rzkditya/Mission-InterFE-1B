@@ -57,6 +57,9 @@ const Footer = () => {
                 <a href="#Thriller">Thriller</a>
               </li>
             </ul>
+            <div className="hidden">
+              <FontAwesomeIcon icon="fa-solid fa-angle-right" />
+            </div>
           </div>
           <div className="flex flex-col gap-2">
             <h3 className="font-bold text-base md:text-lg lg:text-xl">
@@ -76,6 +79,9 @@ const Footer = () => {
                 <a href="#SNK"></a>Syarat & Kententuan
               </li>
             </ul>
+            <div className="hidden">
+              <FontAwesomeIcon icon="fa-solid fa-angle-right" />
+            </div>
           </div>
         </div>
         <div className="flex flex-col sm:hidden justify-between items-start py-4 px-4 gap-2">

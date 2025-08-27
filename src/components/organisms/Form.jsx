@@ -28,6 +28,12 @@ const Form = ({ template = "login" }) => {
       navigate("/home");
     } else {
       alert("Username atau password salah!");
+      if (matchedUser) {
+        localStorage.setItem("loggedInUser", JSON.stringify(matchedUser));
+        navigate("/home");
+      } else {
+        alert("Username atau password salah!");
+      }
     }
   };
 

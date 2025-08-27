@@ -25,16 +25,16 @@ const Navbar = () => {
   };
 
   return (
-    <header className="flex justify-between items-center sm:py-3 sm:px-10 p-4 bg-page-header text-light-primary text-xs sm:text-sm md:text-base lg:text-lg">
+    <header className="flex justify-between items-center md:py-3 md:px-10 p-4 bg-page-header text-light-primary text-xs sm:text-sm md:text-base lg:text-lg">
       <div name="header-container" className="flex items-center">
         <div
           name="header-nav"
           className="flex items-center gap-4 sm:gap-8 md:gap-12 lg:gap-14"
         >
-          <Link to="/Home" className="hidden sm:flex">
+          <Link to="/Home" className="hidden md:flex">
             <img className="h-5 md:h-7 lg:h-8" src={webLogo} alt="Logo Chill" />
           </Link>
-          <Link to="/Home" className="flex sm:hidden">
+          <Link to="/Home" className="flex md:hidden">
             <img className="h-4" src={mobLogo} alt="Logo Chill Mobile" />
           </Link>
           <nav>
@@ -63,9 +63,12 @@ const Navbar = () => {
             alt="Profile Icon"
           />
           <p className="font-medium">{username}</p>
-          <div className="group">
-            <FontAwesomeIcon icon="fa-solid fa-angle-down" />
-            <section className="invisible group-hover:visible delay-200 absolute w-40 md:w-45 lg:w-55 top-10 md:top-15 lg:top-17 right-4 md:right-10 bg-page-header rounded-sm p-4 md:p-6 lg:p-8 outline-1 outline-light-secondary/10 z-11">
+          <details className="group">
+            <summary className="flex items-center gap-2 md:gap-4 cursor-pointer list-none">
+              <FontAwesomeIcon icon="fa-solid fa-angle-down" />
+            </summary>
+
+            <section className="delay-200 absolute w-40 md:w-45 lg:w-55 top-10 md:top-15 lg:top-17 right-4 md:right-10 bg-page-header rounded-sm p-4 md:p-6 lg:p-8 outline-1 outline-light-secondary/10 z-11">
               <ul className="flex flex-col gap-4 md:gap-8 text-left">
                 <li className="hover:text-primary-default">
                   <Link to="/profil-saya">
@@ -90,7 +93,7 @@ const Navbar = () => {
                 </li>
               </ul>
             </section>
-          </div>
+          </details>
         </div>
       </div>
     </header>

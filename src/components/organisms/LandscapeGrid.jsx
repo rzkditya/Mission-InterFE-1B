@@ -1,28 +1,22 @@
 import { useState } from "react";
 import Arrow from "../atoms/Arrow";
-import LandscapeCard from "../molecules/LandscapeCard";
+import Card from "../molecules/LandscapeCard";
 import allMovies from "../../allFilms.json";
 import HoverCardWatch from "./HoverCardWatch";
 
-const titles = {
-  "Continue Watching": "Melanjutkan Tonton Film",
-};
-
 const gridColsMap = {
-  4: "sm:grid-cols-4",
-  5: "sm:grid-cols-5",
-  6: "sm:grid-cols-6",
+  4: "md:grid-cols-4",
+  5: "md:grid-cols-5",
+  6: "md:grid-cols-6",
 };
 
 const LandscapeGrid = ({
-  type = "Continue Watching",
+  title = "Melanjutkan Tonton Film",
   filterKey = "watched",
   onShowDetail,
   itemsPerPage = 4,
 }) => {
   const movies = allMovies.filter((movie) => movie[filterKey]);
-  const title = titles[type] || "---";
-
   const [startIndex, setStartIndex] = useState(0);
   const visibleCard = movies.slice(startIndex, startIndex + itemsPerPage);
 
@@ -39,7 +33,7 @@ const LandscapeGrid = ({
   };
 
   return (
-    <section className="flex flex-col gap-3 mb-5">
+    <section className="flex flex-col gap-5 mb-5">
       <h2 className="text-light-primary text-xl font-medium">{title}</h2>
 
       <div className="relative">
