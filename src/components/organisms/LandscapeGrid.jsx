@@ -56,7 +56,7 @@ const LandscapeGrid = ({
                   }
                 }}
               >
-                <LandscapeCard movie={movie} />
+                <Card movie={movie} />
               </div>
 
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 group-hover:scale-120 transition-opacity duration-300 hover:z-10">

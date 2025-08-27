@@ -1,12 +1,16 @@
 import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { usePost, useGet, usePut } from "../services/api/api-index";
+import { useGet, usePut } from "../services/api/api-index";
 import Header from "../components/organisms/Header";
 import Footer from "../components/organisms/Footer";
 import Button from "../components/atoms/Button";
 import ProfileIcon from "@/assets/images/Profile.svg";
 import WarningIcon from "../assets/images/Warning.svg";
-import DaftarSaya from "../components/organisms/PortraitGrid";
+import Card from "../components/molecules/PortraitCard";
+import HoverCard from "../components/organisms/HoverCard";
+import PopUp from "../components/organisms/PopUpDetail";
+import { Link } from "react-router-dom";
+import { toggleMyList, getMyList } from "../utils/myList";
 
 const labelStyle = "text-light-disabled";
 const inputStyle =
@@ -15,7 +19,11 @@ const inputStyle =
 const ProfilSaya = () => {
   const { data, error } = useGet("userAccounts");
   const { updateData, loading } = usePut();
+
+  const [selectedMovie, setSelectedMovie] = useState(null);
+  const [myList, setMyList] = useState([]);
   const [userId, setUserId] = useState(null);
+
   const [formData, setFormData] = useState({
     username: "",
     email: "",
@@ -40,12 +48,23 @@ const ProfilSaya = () => {
     }
   }, []);
 
+  useEffect(() => {
+    if (userId) {
+      setMyList(getMyList(userId));
+    }
+  }, [userId]);
+
   const toggleEdit = (field) => {
     setIsEditable((prev) => ({
       ...prev,
       [field]: !prev[field],
     }));
   };
+
+  function handleToggle(movieId) {
+    const updated = toggleMyList(userId, movieId);
+    setMyList(updated);
+  }
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -78,6 +97,14 @@ const ProfilSaya = () => {
       alert("Gagal memperbarui profil");
     }
   };
+
+  function handleShowDetail(movie) {
+    setSelectedMovie(movie);
+  }
+
+  function handleCloseDetail() {
+    setSelectedMovie(null);
+  }
 
   return (
     <>
@@ -201,15 +228,68 @@ const ProfilSaya = () => {
           </div>
         </section>
 
-        <section className="relative flex flex-col w-full text-light-primary gap-4">
-          <DaftarSaya title="Daftar Saya" filterKey="myList" />
+        <section className="flex flex-col w-full gap-3 mb-5">
+          <div className="flex justify-between">
+            <h2 className="text-light-primary text-xl font-medium">
+              Daftar Saya
+            </h2>
 
-          <button className="absolute top-0 right-0 p-2 text-lg cursor-pointer">
-            Lihat Semua
-          </button>
+            <Link to="/daftar-saya">
+              <h3 className="text-light-disabled text-xl">Lihat Semua</h3>
+            </Link>
+          </div>
+
+          {myList.length === 0 ? (
+            <p className="text-light-secondary">
+              Belum ada film di daftar Anda.
+            </p>
+          ) : (
+            <div className="relative">
+              <div
+                className="relative grid grid-cols-3 grid-rows-2 sm:grid-cols-6 sm:grid-rows-1
+          } overflow-x-auto overflow-y-clip scrollbar-hide sm:overflow-visible gap-4 text-light-primary"
+              >
+                {myList.map((movie) => (
+                  <div
+                    key={movie.id}
+                    className="relative group flex-shrink-0 w-full sm:w-auto"
+                  >
+                    <div
+                      className="block sm:pointer-events-none"
+                      onClick={() => {
+                        if (window.innerWidth < 768) {
+                          handleShowDetail(movie);
+                        }
+                      }}
+                    >
+                      <Card movie={movie} />
+                    </div>
+
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 group-hover:scale-120 transition-opacity duration-300 hover:z-10 pointer-events-none sm:pointer-events-auto">
+                      <HoverCard
+                        movie={movie}
+                        onShowDetail={() => handleShowDetail(movie)}
+                        onToggleMyList={() => handleToggle(movie.id)}
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
         </section>
       </main>
       <Footer />
+
+      {selectedMovie && (
+        <div className="fixed inset-0 z-50">
+          <PopUp
+            movie={selectedMovie}
+            onClose={handleCloseDetail}
+            toggleMyList={handleToggle}
+          />
+        </div>
+      )}
     </>
   );
 };
