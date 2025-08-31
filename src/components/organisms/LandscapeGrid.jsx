@@ -5,9 +5,9 @@ import allMovies from "../../allFilms.json";
 import HoverCardWatch from "./HoverCardWatch";
 
 const gridColsMap = {
-  4: "md:grid-cols-4",
-  5: "md:grid-cols-5",
-  6: "md:grid-cols-6",
+  4: "sm:grid-cols-4",
+  5: "sm:grid-cols-5",
+  6: "sm:grid-cols-6",
 };
 
 const LandscapeGrid = ({

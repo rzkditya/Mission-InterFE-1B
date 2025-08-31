@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useGet, usePut } from "../services/api/api-index";
+import { Link, useNavigate } from "react-router-dom";
+import { useGet, usePut, useDelete } from "../services/api/api-index";
 import Header from "../components/organisms/Header";
 import Footer from "../components/organisms/Footer";
 import Button from "../components/atoms/Button";
@@ -9,7 +10,6 @@ import WarningIcon from "../assets/images/Warning.svg";
 import Card from "../components/molecules/PortraitCard";
 import HoverCard from "../components/organisms/HoverCard";
 import PopUp from "../components/organisms/PopUpDetail";
-import { Link } from "react-router-dom";
 import { toggleMyList, getMyList } from "../utils/myList";
 
 const labelStyle = "text-light-disabled";
@@ -17,8 +17,9 @@ const inputStyle =
   "relative flex flex-col w-full px-3 py-1 bg-other-paper rounded-md outline-1 outline-light-disabled";
 
 const ProfilSaya = () => {
-  const { data, error } = useGet("userAccounts");
   const { updateData, loading } = usePut();
+  const { deleteData, loading: deleteLoading } = useDelete();
+  const navigate = useNavigate();
 
   const [selectedMovie, setSelectedMovie] = useState(null);
   const [myList, setMyList] = useState([]);
@@ -97,6 +98,17 @@ const ProfilSaya = () => {
       alert("Gagal memperbarui profil");
     }
   };
+
+  async function handleDelete(userId) {
+    try {
+      await deleteData(`userAccounts/${userId}`);
+      alert("Berhasil menghapus akun!");
+      navigate("/login");
+    } catch (err) {
+      console.log(err);
+      alert("Gagal menghapus akun");
+    }
+  }
 
   function handleShowDetail(movie) {
     setSelectedMovie(movie);
@@ -195,12 +207,21 @@ const ProfilSaya = () => {
                   <FontAwesomeIcon icon="fa-solid fa-pencil" />
                 </button>
               </div>
-              <Button
-                type="submit"
-                className="w-[15%] p-1 text-sm focus:bg-primary-300"
-              >
-                {loading ? "Menyimpan..." : "Simpan"}
-              </Button>
+              <div className="flex gap-4">
+                <Button
+                  type="submit"
+                  className="w-[15%] p-1 text-sm focus:bg-primary-300"
+                >
+                  {loading ? "Menyimpan..." : "Simpan"}
+                </Button>
+                <Button
+                  type="button"
+                  className="w-[15%] p-1 text-sm bg-red-700"
+                  onClick={() => handleDelete(userId)}
+                >
+                  {deleteLoading ? "Menghapus..." : "Hapus Akun"}
+                </Button>
+              </div>
             </form>
           </div>
 

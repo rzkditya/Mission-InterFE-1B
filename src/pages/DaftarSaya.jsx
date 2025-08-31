@@ -4,7 +4,6 @@ import Header from "../components/organisms/Header";
 import Footer from "../components/organisms/Footer";
 import PortraitCard from "../components/molecules/PortraitCard";
 import HoverCard from "../components/organisms/HoverCard";
-import allFilms from "../allFilms.json";
 import PopUp from "../components/organisms/PopUpDetail";
 import { toggleMyList, getMyList } from "../utils/myList";
 
