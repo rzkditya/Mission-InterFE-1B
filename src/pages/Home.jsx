@@ -5,27 +5,35 @@ import Footer from "../components/organisms/Footer";
 import PortraitGrid from "../components/organisms/PortraitGrid";
 import LandscapeGrid from "../components/organisms/LandscapeGrid";
 import PopUp from "../components/organisms/PopUpDetail";
-import allFilms from "../allFilms.json";
 import { toggleMyList, getMyList } from "../utils/myList";
+import useAllMovies from "../store/useAllMovies";
 
 const Home = () => {
   const [selectedMovie, setSelectedMovie] = useState(null);
-
   const [movieList, setMovieList] = useState([]);
+  const { movies, fetchAllMovies, loading: loadingMovies } = useAllMovies();
 
-  const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+  const loggedInUser = JSON.parse(localStorage.getItem("auth-storage"))?.state
+    ?.user;
   const userId = loggedInUser?.id;
 
   useEffect(() => {
-    if (!userId) return;
-    const myList = getMyList(userId);
-    setMovieList(
-      allFilms.map((film) => ({
-        ...film,
-        myList: !!myList.find((m) => m.id === film.id),
-      }))
-    );
-  }, [userId]);
+    fetchAllMovies();
+  }, [fetchAllMovies]);
+
+  useEffect(() => {
+    if (!userId || movies.length === 0) return;
+    async function fetchMyListAndMerge() {
+      const myList = await getMyList(userId);
+      setMovieList(
+        movies.map((film) => ({
+          ...film,
+          myList: !!myList.find((m) => m.movieId === film.id),
+        }))
+      );
+    }
+    fetchMyListAndMerge();
+  }, [userId, movies]);
 
   function handleToggle(movieId) {
     const updated = toggleMyList(userId, movieId);

@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import PortraitGrid from "../organisms/PortraitGrid";
+import Card from "../molecules/PortraitCard";
+import HoverCard from "./HoverCard";
 import Button from "../atoms/Button";
 
-const PopUpDetail = ({ movie, onClose, toggleMyList }) => {
+const PopUpDetail = ({ movie, onClose, toggleMyList, movies = [] }) => {
   const [isInMyList, setIsInMyList] = useState(movie.myList);
 
   const handleToggle = () => {
@@ -112,7 +113,52 @@ const PopUpDetail = ({ movie, onClose, toggleMyList }) => {
           </div>
 
           {/* Card Section */}
-          <PortraitGrid title="Rekomendasi Serupa" itemsPerPage={3} />
+          <section className="flex flex-col w-full gap-3 mb-5">
+            <div className="flex justify-between">
+              <h2 className="text-light-primary text-xl font-medium">
+                Rekomendasi Serupa
+              </h2>
+            </div>
+
+            {movies.length === 0 ? (
+              <p className="text-light-secondary">
+                Belum ada film di daftar Anda.
+              </p>
+            ) : (
+              <div className="relative">
+                <div
+                  className="relative grid grid-cols-3
+          } overflow-x-auto overflow-y-clip scrollbar-hide sm:overflow-visible gap-4 text-light-primary"
+                >
+                  {movies.slice(0, 3).map((mov) => (
+                    <div
+                      key={mov.id}
+                      className="relative group flex-shrink-0 w-full sm:w-auto"
+                    >
+                      <div
+                        className="block sm:pointer-events-none"
+                        onClick={() => {
+                          if (window.innerWidth < 768) {
+                            handleShowDetail(mov);
+                          }
+                        }}
+                      >
+                        <Card movie={mov} />
+                      </div>
+
+                      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 group-hover:scale-120 transition-opacity duration-300 hover:z-10 pointer-events-none sm:pointer-events-auto">
+                        <HoverCard
+                          movie={mov}
+                          onShowDetail={() => handleShowDetail(mov)}
+                          onToggleMyList={() => handleToggle(mov.id)}
+                        />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </section>
         </section>
       </div>
     </div>

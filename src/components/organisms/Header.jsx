@@ -1,26 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useNavigate } from "react-router-dom";
-
 import webLogo from "@/assets/images/Logo.svg";
 import mobLogo from "@/assets/images/FavIcon.svg";
 import ProfileIcon from "@/assets/images/Profile.svg";
+import useAuthStore from "../../store/useAuthStore";
 
 const Navbar = () => {
-  const [username, setUsername] = useState("");
-
-  useEffect(() => {
-    const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
-    if (loggedInUser) {
-      setUsername(loggedInUser.username);
-    }
-  }, []);
-
+  const { user, logout } = useAuthStore();
   const navigate = useNavigate();
 
-  const handleLogout = () => {
-    localStorage.removeItem("loggedInUser");
+  const handleLogout = (e) => {
+    e.preventDefault();
+    logout();
     navigate("/login");
   };
 
@@ -62,7 +54,7 @@ const Navbar = () => {
             src={ProfileIcon}
             alt="Profile Icon"
           />
-          <p className="font-medium">{username}</p>
+          <p className="font-medium">{user.username}</p>
           <details className="group">
             <summary className="flex items-center gap-2 md:gap-4 cursor-pointer list-none">
               <FontAwesomeIcon icon="fa-solid fa-angle-down" />

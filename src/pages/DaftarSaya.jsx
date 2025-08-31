@@ -11,7 +11,8 @@ const DaftarSaya = () => {
   const [selectedMovie, setSelectedMovie] = useState(null);
   const [myList, setMyList] = useState([]);
 
-  const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+  const loggedInUser = JSON.parse(localStorage.getItem("auth-storage"))?.state
+    ?.user;
   const userId = loggedInUser?.id;
 
   useEffect(() => {
