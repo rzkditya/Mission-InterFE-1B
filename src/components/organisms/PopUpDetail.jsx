@@ -11,19 +11,18 @@ const PopUpDetail = ({ movie, onClose, toggleMyList }) => {
     setIsInMyList((prev) => !prev);
   };
 
-  const myListIcon =
-    movie.myList === true ? (
-      <FontAwesomeIcon
-        icon="fa-solid fa-heart"
-        style={{ color: "#cc3333" }}
-        className="w-4 p-2 rounded-full bg-light-primary"
-      />
-    ) : (
-      <FontAwesomeIcon
-        icon="fa-solid fa-plus"
-        className="w-4 p-2 rounded-full outline-1 outline-light-disabled"
-      />
-    );
+  const myListIcon = isInMyList ? (
+    <FontAwesomeIcon
+      icon="fa-solid fa-heart"
+      style={{ color: "#cc3333" }}
+      className="w-4 p-2 rounded-full bg-light-primary"
+    />
+  ) : (
+    <FontAwesomeIcon
+      icon="fa-solid fa-plus"
+      className="w-4 p-2 rounded-full outline-1 outline-light-disabled"
+    />
+  );
 
   return (
     <div className="flex justify-center items-center w-full h-full bg-page-header/80 text-base">

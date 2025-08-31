@@ -7,17 +7,14 @@ import LandscapeGrid from "../components/organisms/LandscapeGrid";
 import PopUp from "../components/organisms/PopUpDetail";
 import allFilms from "../allFilms.json";
 import { toggleMyList, getMyList } from "../utils/myList";
-import { useGet, usePost, useDelete } from "../services/api/api-index";
 
 const Home = () => {
   const [selectedMovie, setSelectedMovie] = useState(null);
+
   const [movieList, setMovieList] = useState([]);
 
   const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
   const userId = loggedInUser?.id;
-  const { data: myListData, loading } = useGet(`myList?userId=${userId}`);
-  const { postData } = usePost();
-  const { deleteData } = useDelete();
 
   useEffect(() => {
     if (!userId) return;
@@ -25,21 +22,19 @@ const Home = () => {
     setMovieList(
       allFilms.map((film) => ({
         ...film,
-        myList: !!myList.filter((m) => m.id === film.id),
+        myList: !!myList.find((m) => m.id === film.id),
       }))
     );
   }, [userId]);
 
-  async function handleToggle(movieId) {
-    const exists = myListData?.find(
-      (m) => m.movieId === movieId && m.userId === userId
+  function handleToggle(movieId) {
+    const updated = toggleMyList(userId, movieId);
+    setMovieList((prev) =>
+      prev.map((m) => ({
+        ...m,
+        myList: !!updated.find((um) => um.id === m.id),
+      }))
     );
-
-    if (exists) {
-      await deleteData(`myList/${exists.id}`);
-    } else {
-      await postData("myList", { userId, movieId });
-    }
   }
 
   function handleShowDetail(movie) {
