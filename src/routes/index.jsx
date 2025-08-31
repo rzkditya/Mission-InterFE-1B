@@ -3,7 +3,6 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import Home from "../pages/Home";
 import DaftarSaya from "../pages/DaftarSaya";
-import Test from "../pages/test";
 import Films from "../pages/Films";
 import Series from "../pages/Series";
 import ProfilSaya from "../pages/ProfilSaya";
@@ -40,9 +39,5 @@ export const router = createBrowserRouter([
   {
     path: "/profil-saya",
     element: <ProfilSaya />,
-  },
-  {
-    path: "/test",
-    element: <Test />,
   },
 ]);
